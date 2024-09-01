@@ -14,6 +14,13 @@ export function initializeSocketIO(server: http.Server): SocketIOServer {
 
 
         socket.emit('message', 'Hello from the server!');
+
+        socket.on("join-room", (roomId: any, userId: any) => {
+            console.log(`Received join-room event: roomId = ${roomId}, userId = ${userId}`);
+            socket.join(roomId);
+            socket.broadcast.to(roomId).emit('user-connected', userId);
+
+        });
     });
 
 

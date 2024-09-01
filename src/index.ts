@@ -3,6 +3,7 @@ import http from 'http';
 import cors from "cors";
 import { initializeSocketIO } from './sockets/socket.io';
 import { socketIOMiddleware } from './middlewares/socket_middleware';
+import { Socket } from 'socket.io';
 
 const PORT = 8000;
 
@@ -20,6 +21,7 @@ app.use(socketIOMiddleware(io));
 app.get('/', (req: Request, res: Response) => {
     res.send('Hello from Express.js!');
 });
+
 
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
